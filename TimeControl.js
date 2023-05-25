@@ -8,7 +8,7 @@ function PluginMain() {
 		na = name
 		return code
 	}
-	TimeControl.AddButton("Time control init variables - scoreboard <name>")
+	TimeControl.AddButton("Time control init variables - scoreboard <name>", Control)
 	ids = {}
 	let Delay = (code, [pl, ticks]) => {
 		code.AddTickLine(`scoreboard players add control${pl} tc_${na} 1`)
@@ -17,11 +17,11 @@ function PluginMain() {
 		code.line --
 		return code
 	}
-	TimeControl.AddButton("Delay line below (id <id>) by <ticks>")
+	TimeControl.AddButton("Delay line below (id <id>) by <ticks>", Delay)
 	let EnDelay = (code, [pl, ticks]) => {
 		code.AddLine(`execute if score control${pl} tc_${na} matches ${ids[pl]}.. run scoreboard players set control${pl} tc_${na} 0`)
 		return code
 	}
-	TimeControl.AddButton("End delay with ID <id>")
+	TimeControl.AddButton("End delay with ID <id>", EnDelay)
 	console.log("Time control by binbinuser added!")
 }
